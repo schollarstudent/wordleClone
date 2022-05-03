@@ -103,8 +103,56 @@
         let colums = currentGuessRow.children
 
         for(let i =0; i<matchArray.length; i++){
+            let column = columns [i];
+            column.textContent = guess[i].toUpperCase();
+
+            if (matchArray[i]=== 2){//perfect match
+                column.classList.add('correct');
+            } else if (matchArray[i]=== 1){//in word, wrong spot
+                column.classList.add('in-word');
+            } else {
+                column.classList.add('incorrect'); //no match
+            }
             //todo check each letter for green/yellow/grey backgrounds
         }
+
+        function buildMatchArray(guess){
+        guess = guess.toUpperCase();
+        let answerAsArray = [];
+        let matchArray = [0,0,0,0,0]; //assume no match to start
+        for (let i =0; i< answer.length; i++){
+            let letter = answer[i].toUpperCase();
+            answerAsArray.push(letter);
+         }
+        //todo find exact matches first
+
+        //todo find in-word matches and misses
+        }
+        //find exact matches
+        for(let i =0; i < guess.length; i++){
+            let letter = guess[i];
+            if(letter===answer[i]){
+                answerAsArray[i] = null; //remove lettewr to prevent matching it as yellow, too
+                matchArray[i] = 2; //indicate we found a match
+            }
+        }
+
+        //find in=word matches and misses
+        for(let i = 0; i < guess.length; i++){
+            let letter = guess[i];
+            let indez = answerAsArray.indexOf(letter);
+
+            //if letter not in remaining letters,move on to the next letter
+            if (index===-1){
+                continue
+            }
+
+            //remove letter to prevent matching in other positions
+            answerAsArray[index] = null;
+            //mark it yellow as it is in the word but not in the correct spot
+            matchArray[i]=1
+        }
+        return matchArray
 
     }
 </script>

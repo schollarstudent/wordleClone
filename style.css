@@ -34,7 +34,7 @@ input[type="checkbox"]~ label, input[type="radio"]~ label {
 }
 
 body,.container,.content {
-    background: #121213;
+    background: #3b6a6b;
     overflow: hidden;
     font-family: "Helvetica Neve", Arial, sans-serif;
 }
